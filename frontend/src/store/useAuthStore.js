@@ -37,7 +37,22 @@ signup: async (data)=>{
     }
 },
 
-}));
+login: async(data)=>{
+set({isLoggingUp:true});
+try {
+    const res=await axiosInstance.post("/auth/login",data);
+    set({authUser:res.data});
+    toast.success("Logged in Sucessfully");
+    
+} catch (error) {
+    toast.error(error.response.data.message);
+
+}finally{
+    set({isLoggingUp:false});
+}
+},
+
+
 
 logout: async ()=>{
     try {
@@ -47,4 +62,12 @@ logout: async ()=>{
     } catch (error) {
         toast.error(error.response.data.message);
     }
-}
+},
+
+updateProfile:async(data)=>{
+
+},
+
+}));
+
+
